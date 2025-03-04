@@ -40,3 +40,9 @@ model Paquete {
   envio   Envio @relation(fields: [envioId], references: [id])
 }
 
+model User {
+  id String    @id @default(auto()) @map("_id") @db.ObjectId
+  email    String  @unique
+  name     String?
+  password String
+}

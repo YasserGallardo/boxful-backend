@@ -1,9 +1,11 @@
-import { Controller, Get, Post, Body } from "@nestjs/common";
+import { Controller, Get, Post, Body, UseGuards } from "@nestjs/common";
 import { EnviosService } from "./envios.service";
 import { CreateEnvioDto } from "./dto/create-envio.dto";
 import { ResponseDto } from "./dto/response.dto";
 import { Envio } from "@prisma/client";
+import { JwtGuard } from "src/auth/guards/jwt.guard";
 
+@UseGuards(JwtGuard)
 @Controller("envios")
 export class EnviosController {
     constructor(private readonly enviosService: EnviosService) { }

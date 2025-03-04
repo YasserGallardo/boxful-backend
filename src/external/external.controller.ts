@@ -1,9 +1,11 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, UseGuards } from '@nestjs/common';
 import { CountriesService } from './countries/countries.service';
 import { LocationsService } from './locations/locations.service';
 import { ResponseDto } from 'src/envios/dto/response.dto';
+import { JwtGuard } from 'src/auth/guards/jwt.guard';
 
 
+@UseGuards(JwtGuard)
 @Controller('external')
 export class ExternalController {
     constructor(
