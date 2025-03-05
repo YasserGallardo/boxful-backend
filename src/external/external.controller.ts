@@ -2,10 +2,9 @@ import { Controller, Get, Param, UseGuards } from '@nestjs/common';
 import { CountriesService } from './countries/countries.service';
 import { LocationsService } from './locations/locations.service';
 import { ResponseDto } from 'src/envios/dto/response.dto';
-import { JwtGuard } from 'src/auth/guards/jwt.guard';
 
+import * as countries from './countries/data/countries.json';
 
-@UseGuards(JwtGuard)
 @Controller('external')
 export class ExternalController {
     constructor(
@@ -15,8 +14,7 @@ export class ExternalController {
 
     @Get('countries')
     async getCountries() {
-        const data = await this.countriesService.getCountries();
-        return new ResponseDto(data, "Paises encontrados correctamente");
+        return new ResponseDto(countries, "Paises encontrados correctamente");
     }
 
     @Get('departamentos')
